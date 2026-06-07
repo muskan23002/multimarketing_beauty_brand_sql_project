@@ -18,6 +18,7 @@ The following README provides a detailed account of the project's objectives, bu
 - Identify the most efficient customer segments and languages for each brand
 - Perform monthly and quarterly time series analysis
 - Answer 10 real-world business questions a marketing manager would ask
+- Build a final enriched view for Power BI dashboard (coming soon)
 
 ---
 
@@ -36,6 +37,10 @@ The data for this project is sourced from Kaggle:
 | Format | CSV (3 separate files, one per brand) |
 
 ### Schema
+
+**Step 1 — Individual Brand Tables (3 tables, identical structure)**
+
+> Note: Same schema applies to `purplle_campaigns` and `tira_campaigns`
 
 ```sql
 CREATE TABLE nykaa_campaigns (
@@ -56,7 +61,44 @@ CREATE TABLE nykaa_campaigns (
     customer_segment   VARCHAR(100),
     campaign_date      DATE
 );
+
+-- Same structure for:
+CREATE TABLE purplle_campaigns ( ... );
+CREATE TABLE tira_campaigns    ( ... );
 ```
+
+**Step 2 — Master Combined Table (used for all analysis)**
+
+> All 3 brand tables combined using UNION ALL with an additional `brand` column
+
+```sql
+CREATE TABLE all_campaigns AS
+SELECT 'Nykaa'   AS brand, * FROM nykaa_campaigns
+UNION ALL
+SELECT 'Purplle' AS brand, * FROM purplle_campaigns
+UNION ALL
+SELECT 'Tira'    AS brand, * FROM tira_campaigns;
+```
+
+| Column | Type | Description |
+|---|---|---|
+| brand | TEXT | Nykaa / Purplle / Tira |
+| campaign_id | VARCHAR(20) | Unique campaign identifier |
+| campaign_type | VARCHAR(50) | Email, SEO, Paid Ads, Social Media, Influencer |
+| target_audience | VARCHAR(100) | Audience targeted |
+| duration | INT | Campaign length in days |
+| channel_used | VARCHAR(50) | Instagram, Google, YouTube, Facebook, WhatsApp, Email |
+| impressions | INT | People who saw the ad |
+| clicks | INT | People who clicked |
+| leads | INT | Interested prospects |
+| conversions | INT | Actual purchases |
+| revenue | NUMERIC(10,2) | Revenue generated |
+| acquisition_cost | NUMERIC(10,2) | Ad spend |
+| roi | NUMERIC(10,2) | Return on Investment |
+| language | VARCHAR(50) | Hindi, English, Tamil, Bengali |
+| engagement_score | NUMERIC(5,2) | Campaign engagement metric |
+| customer_segment | VARCHAR(100) | College Students, Premium Shoppers, Working Women, Youth, Tier 2 City |
+| campaign_date | DATE | Date campaign ran |
 
 ---
 
