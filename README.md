@@ -1,5 +1,5 @@
 # 🛍️ Multi-Brand Beauty Marketing Campaign Analysis
-### SQL + Power BI | PostgreSQL | Indian Beauty Industry
+### SQL | PostgreSQL | Indian Beauty Industry
 
 ![SQL](https://img.shields.io/badge/SQL-PostgreSQL-blue)
 ![Status](https://img.shields.io/badge/Status-In%20Progress-orange)
