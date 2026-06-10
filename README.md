@@ -1,5 +1,7 @@
 # 🛍️ Multi-Brand Beauty Marketing Campaign Analysis Using SQL
 
+![Project Banner](https://raw.githubusercontent.com/muskan23002/multi-beauty-brand-marketing-analysis/main/banner.png)
+
 ## Project Overview
 
 This project involves a comprehensive analysis of marketing campaign performance data across **three major Indian beauty brands — Nykaa, Purplle, and Tira** — using SQL. The goal is to extract actionable marketing insights and answer real-world business questions based on the dataset.
